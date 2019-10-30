@@ -1,0 +1,10 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: vwebrtc
+Description: V WebRTC Audio Processing library
+Version: 0.3.1
+Libs: -L${libdir} -lvwebrtc_audio_processing
+Cflags: -DWEBRTC_AUDIO_PROCESSING_ONLY_BUILD -I${includedir}/vwebrtc -DWEBRTC_POSIX

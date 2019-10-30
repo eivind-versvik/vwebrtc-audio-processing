@@ -33,6 +33,24 @@
 //   WebRtcSpl_MaxAbsValueW16C and WebRtcSpl_MaxAbsIndexW16 into a single one.)
 // TODO(kma): Move the next six functions into min_max_operations_c.c.
 
+int16_t WebRtcSpl_MaxAbsValueW16(const int16_t* vector, size_t length) {
+  int i = 0, absolute = 0, maximum = 0;
+  if (vector == NULL || length <= 0) {
+    return -1;
+  }
+  for (i = 0; i < length; i++) {
+    absolute = abs((int)vector[i]);
+    if (absolute > maximum) {
+      maximum = absolute;
+    }
+  }
+  // Guard the case for abs(-32768).
+  if (maximum > WEBRTC_SPL_WORD16_MAX) {
+    maximum = WEBRTC_SPL_WORD16_MAX;
+  }
+  return (int16_t)maximum;
+}
+
 // Maximum absolute value of word16 vector. C version for generic platforms.
 int16_t WebRtcSpl_MaxAbsValueW16C(const int16_t* vector, size_t length) {
   size_t i = 0;

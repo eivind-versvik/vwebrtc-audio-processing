@@ -226,11 +226,11 @@ int WebRtcAecm_ProcessFrame(AecmCore* aecm,
 //      - out           : Out buffer, one block of nearend signal          :
 //
 //
-int WebRtcAecm_ProcessBlock(AecmCore* aecm,
+static int WebRtcAecm_ProcessBlock(AecmCore* aecm,
                             const int16_t* farend,
                             const int16_t* nearendNoisy,
                             const int16_t* noisyClean,
-                            int16_t* out);
+                            int16_t* out){}
 
 ////////////////////////////////////////////////////////////////////////////////
 // WebRtcAecm_BufferFarFrame()

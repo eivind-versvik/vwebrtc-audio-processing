@@ -16,7 +16,6 @@
 #include <vector>
 
 #include "api/function_view.h"
-#include "modules/audio_processing/agc/gain_control.h"
 #include "modules/audio_processing/audio_buffer.h"
 #include "modules/audio_processing/include/aec_dump.h"
 #include "modules/audio_processing/include/audio_processing.h"
@@ -230,9 +229,7 @@ class AudioProcessingImpl : public AudioProcessing {
   void InitializeVoiceDetector() RTC_EXCLUSIVE_LOCKS_REQUIRED(crit_capture_);
   void InitializeEchoController()
       RTC_EXCLUSIVE_LOCKS_REQUIRED(crit_render_, crit_capture_);
-  void InitializeGainController2() RTC_EXCLUSIVE_LOCKS_REQUIRED(crit_capture_);
   void InitializeNoiseSuppressor() RTC_EXCLUSIVE_LOCKS_REQUIRED(crit_capture_);
-  void InitializePreAmplifier() RTC_EXCLUSIVE_LOCKS_REQUIRED(crit_capture_);
   void InitializePostProcessor() RTC_EXCLUSIVE_LOCKS_REQUIRED(crit_capture_);
   void InitializeAnalyzer() RTC_EXCLUSIVE_LOCKS_REQUIRED(crit_capture_);
   void InitializePreProcessor() RTC_EXCLUSIVE_LOCKS_REQUIRED(crit_render_);
@@ -247,11 +244,6 @@ class AudioProcessingImpl : public AudioProcessing {
   void HandleRenderRuntimeSettings() RTC_EXCLUSIVE_LOCKS_REQUIRED(crit_render_);
   void ApplyAgc1Config(const Config::GainController1& agc_config)
       RTC_EXCLUSIVE_LOCKS_REQUIRED(crit_capture_);
-
-  // Returns a direct pointer to the AGC1 submodule: either a GainControlImpl
-  // or GainControlForExperimentalAgc instance.
-  GainControl* agc1();
-  const GainControl* agc1() const;
 
   void EmptyQueuedRenderAudio();
   void AllocateRenderQueue()

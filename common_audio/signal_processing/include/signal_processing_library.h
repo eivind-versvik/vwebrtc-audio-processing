@@ -133,8 +133,7 @@ void WebRtcSpl_ZerosArrayW32(int32_t* vector, size_t vector_length);
 //      - length : Number of samples in vector.
 //
 // Return value  : Maximum absolute value in vector.
-typedef int16_t (*MaxAbsValueW16)(const int16_t* vector, size_t length);
-extern const MaxAbsValueW16 WebRtcSpl_MaxAbsValueW16;
+int16_t WebRtcSpl_MaxAbsValueW16(const int16_t* vector, size_t length);
 int16_t WebRtcSpl_MaxAbsValueW16C(const int16_t* vector, size_t length);
 #if defined(WEBRTC_HAS_NEON)
 int16_t WebRtcSpl_MaxAbsValueW16Neon(const int16_t* vector, size_t length);

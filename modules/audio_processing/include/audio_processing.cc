@@ -69,7 +69,7 @@ AudioProcessing::Config::Pipeline::Pipeline()
     : maximum_internal_processing_rate(GetDefaultMaxInternalRate()) {}
 
 std::string AudioProcessing::Config::ToString() const {
-  char buf[1024];
+  /*char buf[1024];
   rtc::SimpleStringBuilder builder(buf);
   builder << "AudioProcessing::Config{ "
           << "pre_amplifier: { enabled: " << pre_amplifier.enabled
@@ -105,8 +105,8 @@ std::string AudioProcessing::Config::ToString() const {
           << " } }, residual_echo_detector: { enabled: "
           << residual_echo_detector.enabled
           << " }, level_estimation: { enabled: " << level_estimation.enabled
-          << " } }";
-  return builder.str();
+          << " } }";*/
+  return "deletedd!";
 }
 
 }  // namespace webrtc
