@@ -178,7 +178,7 @@ libvwebrtc_audio_processing_la_LIBADD = \
 #				       $(GNUSTL_LIBS)
 libvwebrtc_audio_processing_la_LDFLAGS = $(AM_LDFLAGS) $(COMMON_LDFLAGS) \
 					-no-undefined \
-					-version-info $(LIBWEBRTC_AUDIO_PROCESSING_VERSION_INFO)
+					-version-info $(VLIBWEBRTC_AUDIO_PROCESSING_VERSION_INFO)
 
 # FIXME: The MIPS optimisations need to be hooked up once we have the
 # autotools conditionals in place
