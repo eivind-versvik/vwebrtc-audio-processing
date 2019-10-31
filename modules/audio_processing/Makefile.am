@@ -32,7 +32,6 @@ libvwebrtc_audio_processing_la_SOURCES = aec3/adaptive_fir_filter.cc \
 					aec3/fullband_erle_estimator.cc \
 					aec3/main_filter_update_gain.cc \
 					utility/ooura_fft.cc \
-					utility/ooura_fft_sse2.cc \
 					utility/cascaded_biquad_filter.cc \
 					aec3/matched_filter.cc \
 					aec3/subband_erle_estimator.cc \
@@ -148,21 +147,23 @@ endif
 COMMON_CFLAGS += -DWEBRTC_APM_DEBUG_DUMP=0
 COMMON_CXXFLAGS += -DWEBRTC_APM_DEBUG_DUMP=0
 
-#if HAVE_X86
+if HAVE_X86
 #noinst_LTLIBRARIES = libvwebrtc_audio_processing_privatearch.la
 #LIBWEBRTC_PRIVATEARCH=libvwebrtc_audio_processing_privatearch.la
 libvwebrtc_audio_processing_la_SOURCES += \
 					aec/aec_core_sse2.cc
+					utility/ooura_fft_sse2.cc
 libvwebrtc_audio_processing_la_CFLAGS = -msse2
 libvwebrtc_audio_processing_la_CXXFLAGS = -msse2
 #libvwebrtc_audio_processing_privatearch_la_LDFLAGS = $(AM_LDFLAGS)
-#endif
+endif
 
 if HAVE_NEON
 libvwebrtc_audio_processing_la_SOURCES += \
-					aec/aec_core_neon.c \
-					aec/aec_rdft_neon.c \
-					aecm/aecm_core_neon.c
+					aec/aec_core_neon.cc \
+					aecm/aecm_core_neon.cc \
+					utility/ooura_fft_neon.cc
+
 endif
 
 libvwebrtc_audio_processing_la_CFLAGS = $(AM_CFLAGS) $(COMMON_CFLAGS)

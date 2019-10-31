@@ -55,7 +55,6 @@ libvwebrtc_la_SOURCES = api/audio/echo_canceller3_factory.cc \
 		common_audio/resampler/push_sinc_resampler.cc \
 		common_audio/vad/webrtc_vad.c \
 		common_audio/resampler/sinc_resampler.cc \
-		common_audio/resampler/sinc_resampler_sse.cc \
 		common_audio/vad/vad_core.c \
 		common_audio/vad/vad_sp.c \
 		common_audio/vad/vad_filterbank.c \
@@ -79,8 +78,23 @@ libvwebrtc_la_SOURCES = api/audio/echo_canceller3_factory.cc \
 		common_audio/signal_processing/get_scaling_square.c \
 		common_audio/signal_processing/min_max_operations.c \
 		common_audio/fir_filter_factory.cc \
-		common_audio/fir_filter_sse.cc \
 		common_audio/signal_processing/complex_bit_reverse.c
+
+if HAVE_NEON
+
+libvwebrtc_la_SOURCES += \
+	common_audio/fir_filter_neon.cc \
+	common_audio/resampler/sinc_resampler_neon.cc
+
+endif
+
+if HAVE_X86
+
+libvwebrtc_la_SOURCES += \
+		common_audio/resampler/sinc_resampler_sse.cc \
+		common_audio/fir_filter_sse.cc
+endif
+
 
 TEST =  common_audio/resampler/push_resampler.cc
 
